@@ -1,0 +1,360 @@
+/* ---------- Theme variables (light + dark) ---------- */
+:root {
+  --bg: #ffffff;
+  --text: #49557e;
+  --accent: tomato;
+  --border: #e2e2e2;
+  --surface: #fff2ef;
+  --popup: #ffffff;
+}
+:root[data-theme="dark"] {
+  --bg: #17181c;
+  --text: #d5d9e6;
+  --border: #33363f;
+  --surface: #2a2220;
+  --popup: #22242a;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+:root[data-theme="dark"] .navbar img {
+  filter: invert(0.85);
+}
+
+/* ---------- Layout (NOT sticky: scrolls away with the page) ---------- */
+.navbar-wrap {
+  position: relative;
+  background: var(--bg);
+}
+.navbar {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.navbar .logo {
+  color: var(--accent);
+  font-size: 28px;
+}
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  color: var(--text);
+  font-size: 18px;
+}
+.navbar-menu a,
+.navbar-menu a:visited {
+  cursor: pointer;
+  padding-bottom: 2px;
+}
+.navbar-menu .active {
+  padding-bottom: 2px;
+  border-bottom: 2px solid var(--text);
+}
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.navbar-right img {
+  width: 22px;
+  height: 22px;
+}
+.navbar-right > button,
+.navbar-searchbar button,
+.navbar-location-pop button {
+  background: transparent;
+  font-size: 16px;
+  color: var(--text);
+  border: 1px solid var(--accent);
+  padding: 8px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.navbar-right > button:hover,
+.navbar-searchbar button:hover,
+.navbar-location-pop button:hover {
+  background-color: var(--surface);
+}
+
+/* ---------- Icon buttons ---------- */
+.navbar-right .navbar-icon-btn {
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+}
+.navbar-right .navbar-icon-btn:hover {
+  background: transparent;
+}
+.navbar-theme {
+  font-size: 20px !important;
+  line-height: 1;
+  width: 24px;
+  justify-content: center;
+}
+
+/* ---------- Cart + badge ---------- */
+.navbar-search-icon {
+  position: relative;
+}
+.navbar-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Veg toggle ---------- */
+.navbar-right .navbar-veg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-color: var(--border);
+}
+.navbar-veg-dot {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #2e9e4f;
+  border-radius: 3px;
+  position: relative;
+}
+.navbar-veg-dot::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: #2e9e4f;
+  opacity: 0.35;
+}
+.navbar-right .navbar-veg.on {
+  background: #e8f6ec;
+  border-color: #2e9e4f;
+  color: #1f6b36;
+}
+.navbar-veg.on .navbar-veg-dot::after {
+  opacity: 1;
+}
+:root[data-theme="dark"] .navbar-right .navbar-veg.on {
+  background: #1d3326;
+  color: #8ad8a3;
+}
+
+/* ---------- Delivery location ---------- */
+.navbar-location {
+  position: relative;
+}
+.navbar-right .navbar-location-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  padding: 4px 6px;
+  max-width: 150px;
+}
+.navbar-right .navbar-location-btn:hover {
+  background: transparent;
+  color: var(--accent);
+}
+.navbar-pin {
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--accent);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  flex: none;
+}
+.navbar-location-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+}
+.navbar-location-pop {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  z-index: 20;
+  width: 240px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--popup);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+.navbar-location-pop label {
+  font-size: 13px;
+}
+.navbar-location-pop input {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+}
+
+/* ---------- Search bar (opens under the navbar) ---------- */
+.navbar-searchbar {
+  display: flex;
+  gap: 10px;
+  padding: 0 0 16px;
+}
+.navbar-searchbar input {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  outline: none;
+}
+.navbar-searchbar input:focus {
+  border-color: var(--accent);
+}
+.navbar-searchbar .ghost {
+  border-color: var(--border);
+}
+
+/* ---------- Profile dropdown ---------- */
+.navbar-profile {
+  position: relative;
+}
+.nav-profile-dropdown {
+  position: absolute;
+  display: none;
+  right: 0;
+  z-index: 10;
+  background-color: var(--surface);
+  padding: 12px 25px;
+  border-radius: 4px;
+  border: 1px solid tomato;
+  outline: 2px solid white;
+  list-style: none;
+}
+.navbar-profile:hover .nav-profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.nav-profile-dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.nav-profile-dropdown img {
+  width: 20px;
+}
+.nav-profile-dropdown li:hover {
+  color: tomato;
+}
+
+/* ---------- Hamburger (hidden on desktop) ---------- */
+.navbar-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.navbar-hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1050px) {
+  .navbar .logo {
+    width: auto;
+    font-size: 24px;
+  }
+  .navbar-menu {
+    gap: 14px;
+    font-size: 16px;
+  }
+  .navbar-right {
+    gap: 14px;
+  }
+  .navbar-right > button {
+    padding: 7px 18px;
+  }
+}
+
+@media (max-width: 800px) {
+  .navbar-hamburger {
+    display: flex;
+  }
+  .navbar {
+    gap: 10px;
+  }
+  .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 15;
+    flex-direction: column;
+    gap: 0;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  }
+  .navbar-menu.open {
+    display: flex;
+  }
+  .navbar-menu a {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .navbar-menu a:last-child {
+    border-bottom: none;
+  }
+  .navbar-menu .active {
+    border-bottom: 1px solid var(--border);
+    color: var(--accent);
+  }
+  .navbar-right {
+    gap: 10px;
+  }
+  .navbar-location-text,
+  .navbar-veg-label {
+    display: none;
+  }
+  .navbar-right .navbar-veg {
+    padding: 6px 8px;
+  }
+  .navbar-right > button {
+    padding: 6px 14px;
+    font-size: 14px;
+  }
+  .navbar-location-pop {
+    right: -60px;
+  }
+}
